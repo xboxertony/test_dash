@@ -1,0 +1,11 @@
+.main h1{
+    color: red;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+}
+.main input{
+    width: 50%;
+    margin-top: 10px;
+}
