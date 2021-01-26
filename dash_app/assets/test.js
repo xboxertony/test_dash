@@ -1,4 +1,4 @@
 window.onload = function(){
-    let a = document.getElementsByClassName("three_columns");
-    console.log(a.length);
+    var titleEls = document.getElementsByClassName("Main");
+    console.log(titleEls.length);
 }

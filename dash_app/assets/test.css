@@ -1,12 +1,30 @@
 *{
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 .Main{
     display: flex;
     margin: 0;
     position: relative;
     width: 100%;
+}
+.Nav{
+    display:flex;
+    justify-content:flex-end;
+    background-color: skyblue;
+    width: 100%;
+    font-size: 20px;
+}
+.Nav a{
+    text-decoration: none;
+    margin: 10px;
+    color: black;
+    transition: .5s;
+}
+.Nav a:hover{
+    color:sandybrown;
+    font-size: larger;
 }
 .three_columns{
     position: absolute;

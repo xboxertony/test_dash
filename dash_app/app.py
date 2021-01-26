@@ -40,14 +40,19 @@ all_area = list(np.unique(np.array(df_group['鄉鎮市區_'])))
 all_type = list(np.unique(np.array(df_group['建物型態_'])))
 all_y = ['單價元平方公尺_count', '單價元平方公尺_median', 'date_diff_median']
 app.layout = html.Div(children=[
-        html.Div([
+                    html.Nav(children=[
+                        html.A("回首頁",href="/"),
+                        html.A("連結其他",href="/")
+                                ],className = "Nav"),
+                html.Div(children=[
+            html.Div([
             html.Div([
                 html.Label('Y'),
                 dcc.Dropdown(
                     id='my_y',
                     options=[{'label' : p, 'value' : p} for p in all_y],
                     multi=False,
-                    value='單價元平方公尺_median'
+                    value="單價元平方公尺_count"
                 ),
             ]),
             html.Div([
@@ -77,7 +82,7 @@ app.layout = html.Div(children=[
                     type="default",
                 )
             ],  className="nine_columns")
-],className = "Main")
+],className = "Main")])
                       
 @app.callback(
     Output('graph', 'figure'),
