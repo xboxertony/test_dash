@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.Main{
+    display: flex;
+    margin: 0;
+    position: relative;
+    width: 100%;
+}
+.three_columns{
+    position: absolute;
+    padding: 20px;
+    transition: .5s;
+    background-color: blanchedalmond;
+    width: 300px;
+    z-index: 1;
+    left:-300px;
+    height: 100%;
+}
+.nine_columns{
+    position: relative;
+    right: -110px;
+    transition: .5s;
+}
+.three_columns:hover{
+    left: 0px;
+}
+.three_columns:hover + .nine_columns {
+    right: -310px;
+}

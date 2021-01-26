@@ -1,4 +1,3 @@
-
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -30,11 +29,11 @@ def make_lowess(series):
 #### Data preparation ==============================================
 df_group = pd.read_pickle("./data.pkl")
 
-df_group = df_group.replace({'建物型態_': '套房(1房1廳1衛)'}, {'建物型態_': '套房<br>(1房1廳1衛)'}, regex=False)
-df_group = df_group.replace({'建物型態_': '住宅大樓(11層含以上有電梯)'}, {'建物型態_': '住宅大樓<br>(11層含以上<br>有電梯)'}, regex=False)
-df_group = df_group.replace({'建物型態_': '公寓(5樓含以下無電梯)'}, {'建物型態_': '公寓<br>(5樓含以下<br>無電梯)'}, regex=False)
-df_group = df_group.replace({'建物型態_': '店面(店鋪)'}, {'建物型態_': '店面<br>(店鋪)'}, regex=False)
-df_group = df_group.replace({'建物型態_': '華廈(10層含以下有電梯)'}, {'建物型態_': '華廈<br>(10層含以下有電梯)'}, regex=False)
+df_group = df_group.replace({'建物型態_': '套房(1房1廳1衛)'}, {'建物型態_': '套房(1房1廳1衛)'}, regex=False)
+df_group = df_group.replace({'建物型態_': '住宅大樓(11層含以上有電梯)'}, {'建物型態_': '住宅大樓(11層含以上有電梯)'}, regex=False)
+df_group = df_group.replace({'建物型態_': '公寓(5樓含以下無電梯)'}, {'建物型態_': '公寓(5樓含以下無電梯)'}, regex=False)
+df_group = df_group.replace({'建物型態_': '店面(店鋪)'}, {'建物型態_': '店面(店鋪)'}, regex=False)
+df_group = df_group.replace({'建物型態_': '華廈(10層含以下有電梯)'}, {'建物型態_': '華廈(10層含以下有電梯)'}, regex=False)
 
 ##### Lines =================================
 all_area = list(np.unique(np.array(df_group['鄉鎮市區_'])))
@@ -70,15 +69,15 @@ app.layout = html.Div(children=[
                 ),
                 html.Button(id='submit-button-state', n_clicks=0, children='Submit', 
                     style={'float':'right', 'margin': '10px 0px 10px 0px'}),
-            ])], className="three columns", style={'margin': '10px'}),
+            ])], className="three_columns"),
         html.Div([
                 dcc.Loading(
                     id="loading-2",
                     children=[dcc.Graph(id='graph')],
                     type="default",
                 )
-            ],  className="nine columns", style={'margin': '10px'})
-])
+            ],  className="nine_columns")
+],className = "Main")
                       
 @app.callback(
     Output('graph', 'figure'),
