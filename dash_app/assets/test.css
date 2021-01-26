@@ -3,6 +3,9 @@
     padding: 0;
     text-decoration: none;
 }
+#button{
+    display: none;
+}
 .Main{
     display: flex;
     margin: 0;

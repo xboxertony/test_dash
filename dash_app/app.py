@@ -8,6 +8,7 @@ import numpy as np
 import pdb
 import statsmodels.api as sm
 from dash.exceptions import PreventUpdate
+import visdcc
 
 lowess = sm.nonparametric.lowess
 #### Configuration =================================================
@@ -40,6 +41,8 @@ all_area = list(np.unique(np.array(df_group['鄉鎮市區_'])))
 all_type = list(np.unique(np.array(df_group['建物型態_'])))
 all_y = ['單價元平方公尺_count', '單價元平方公尺_median', 'date_diff_median']
 app.layout = html.Div(children=[
+    html.Button('open url', id = 'button'),
+    visdcc.Run_js(id = 'javascript'),
                     html.Nav(children=[
                         html.A("回首頁",href="/"),
                         html.A("連結其他",href="/")
@@ -81,8 +84,16 @@ app.layout = html.Div(children=[
                     children=[dcc.Graph(id='graph')],
                     type="default",
                 )
-            ],  className="nine_columns")
-],className = "Main")])
+            ],  className="nine_columns",id="js")
+],className = "Main",id="MainPower")])
+
+@app.callback(Output('javascript', 'run'),[Input("button","n_clicks")])
+def myfun(x): 
+    return """let titleEls = document.getElementsByClassName("three_columns")[0];
+                console.log(document.getElementsByClassName("three_columns").length);
+                console.log(titleEls);
+                console.log("1");
+                """
                       
 @app.callback(
     Output('graph', 'figure'),
