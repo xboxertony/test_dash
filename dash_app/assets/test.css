@@ -41,12 +41,21 @@
 }
 .nine_columns{
     position: relative;
-    right: -110px;
+    right: -150px;
     transition: .5s;
 }
 .three_columns:hover{
     left: 0px;
 }
+#graph{
+    width: 1000px;
+    height: 600px;
+    transition: .3s;
+}
 .three_columns:hover + .nine_columns {
     right: -310px;
+}
+.three_columns:hover + .nine_columns #graph{
+    width: 1000px;
+    height: 500px;
 }

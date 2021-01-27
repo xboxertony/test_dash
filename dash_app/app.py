@@ -9,6 +9,7 @@ import pdb
 import statsmodels.api as sm
 from dash.exceptions import PreventUpdate
 import visdcc
+import plotly.graph_objs as go
 
 lowess = sm.nonparametric.lowess
 #### Configuration =================================================
@@ -78,13 +79,11 @@ app.layout = html.Div(children=[
                 html.Button(id='submit-button-state', n_clicks=0, children='Submit', 
                     style={'float':'right', 'margin': '10px 0px 10px 0px'}),
             ])], className="three_columns"),
-        html.Div([
-                dcc.Loading(
-                    id="loading-2",
-                    children=[dcc.Graph(id='graph')],
-                    type="default",
-                )
-            ],  className="nine_columns",id="js")
+            html.Div(children=[
+                html.Div(children=[
+                    dcc.Graph(id="graph")
+                ]),
+            ],className="nine_columns")
 ],className = "Main",id="MainPower")])
 
 @app.callback(Output('javascript', 'run'),[Input("button","n_clicks")])
@@ -113,7 +112,7 @@ def set_cities_options(n_clicks, my_y, my_area, my_type):
     df_plot['k'] = df_plot.groupby(['建物型態_', '鄉鎮市區_'])[my_y].transform(make_lowess)
 
     fig = px.line(df_plot, x="date_", y=[my_y, 'k'], 
-                    height=600, width=1000,
+                    # height=700, width=1000,
                     facet_col="鄉鎮市區_",
                     facet_row="建物型態_", 
                     template = 'plotly', # "plotly", "plotly_white", "plotly_dark", "ggplot2", "seaborn", "simple_white", "none"
