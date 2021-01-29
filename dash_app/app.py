@@ -68,7 +68,7 @@ app.layout = html.Div(children=[
                     value=all_area[0:4]
                 ),
             ]),
-            html.Div([
+            html.Div(children = [
                 html.Label('建物型態'),
                 dcc.Dropdown(
                     id='my_type',
@@ -78,6 +78,7 @@ app.layout = html.Div(children=[
                 ),
                 html.Button(id='submit-button-state', n_clicks=0, children='Submit', 
                     style={'float':'right', 'margin': '10px 0px 10px 0px'}),
+                html.Button("Fix Sc",id="fix"),
             ])], className="three_columns"),
             html.Div(children=[
                 html.Div(children=[
@@ -89,9 +90,11 @@ app.layout = html.Div(children=[
 @app.callback(Output('javascript', 'run'),[Input("button","n_clicks")])
 def myfun(x): 
     return """let titleEls = document.getElementsByClassName("three_columns")[0];
-                console.log(document.getElementsByClassName("three_columns").length);
-                console.log(titleEls);
-                console.log("1");
+                let btn = document.getElementById("fix");
+                btn.addEventListener("click",function(){
+                    titleEls.classList.toggle("A");
+                    btn.classList.toggle("click");
+                });
                 """
                       
 @app.callback(

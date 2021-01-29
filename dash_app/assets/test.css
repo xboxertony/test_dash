@@ -11,6 +11,7 @@
     margin: 0;
     position: relative;
     width: 100%;
+    height: 100%;
 }
 .Nav{
     display:flex;
@@ -37,7 +38,7 @@
     width: 300px;
     z-index: 1;
     left:-300px;
-    height: 100%;
+    height: 600px;
 }
 .nine_columns{
     position: relative;
@@ -47,15 +48,34 @@
 .three_columns:hover{
     left: 0px;
 }
+.three_columns.A{
+    left : 0px;
+}
 #graph{
     width: 1000px;
     height: 600px;
     transition: .3s;
 }
+#fix{
+    position: relative;
+    top: 60px;
+    left: 65%;
+    background-color: cadetblue;
+}
+#fix.click{
+    background-color: orange;
+}
 .three_columns:hover + .nine_columns {
     right: -310px;
 }
 .three_columns:hover + .nine_columns #graph{
+    width: 1000px;
+    height: 500px;
+}
+.three_columns.A + .nine_columns{
+    right: -310px;
+}
+.three_columns.A + .nine_columns #graph{
     width: 1000px;
     height: 500px;
 }
