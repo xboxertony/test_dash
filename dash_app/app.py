@@ -10,11 +10,31 @@ import statsmodels.api as sm
 from dash.exceptions import PreventUpdate
 import visdcc
 import plotly.graph_objs as go
+from flask import Flask
+from flask import render_template
 
 lowess = sm.nonparametric.lowess
 #### Configuration =================================================
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = Flask(__name__)
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets,server = server)
+
+app.index_string = '''
+            <head>
+                {%css%}
+                <link ref="stylesheet" href="/assets/test.css">
+            </head>
+            <body>
+                <nav class="Nav">
+                    <a href="/">回首頁</a>
+                    <a href="/another">連結其他</a>
+                </nav>
+                {%app_entry%}
+                {%config%}
+                {%scripts%}
+                {%renderer%}
+            </body>
+'''
 
 ##### Functions =============================
 def make_lowess(series):
@@ -44,10 +64,6 @@ all_y = ['單價元平方公尺_count', '單價元平方公尺_median', 'date_di
 app.layout = html.Div(children=[
     html.Button('open url', id = 'button'),
     visdcc.Run_js(id = 'javascript'),
-                    html.Nav(children=[
-                        html.A("回首頁",href="/"),
-                        html.A("連結其他",href="/")
-                                ],className = "Nav"),
                 html.Div(children=[
             html.Div([
             html.Div([
@@ -94,6 +110,7 @@ def myfun(x):
                 btn.addEventListener("click",function(){
                     titleEls.classList.toggle("A");
                     btn.classList.toggle("click");
+                    console.log("toggle");
                 });
                 """
                       
@@ -135,5 +152,14 @@ def set_cities_options(n_clicks, my_y, my_area, my_type):
     
     return fig
 
+
+@server.route("/")
+def home():
+    return app.index()
+
+@server.route("/another")
+def another():
+    return render_template("test.html")
+
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    server.run(debug=True)
