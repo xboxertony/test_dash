@@ -13,23 +13,23 @@ dash_app2 = f2(server)
 
 @server.route("/")
 def home():
-    return redirect('/dash1')
+    return redirect('/dash1/')
 
 @server.route("/reports/")
 def home2():
-    return redirect('/dash2')
+    return redirect('/dash2/')
 
-# @server2.route("/index")
-# def home2():
-#     return app2.index()
+@server.route("/index/")
+def home3():
+    return redirect("/reports/")
 
-@server.route("/another")
+@server.route("/another/")
 def another():
     return render_template("test.html")
 
 app = DispatcherMiddleware(server, {
-    '/dash1': dash_app1.server,
-    '/dash2': dash_app2.server
+    '/dash1/': dash_app1.server,
+    '/dash2/': dash_app2.server
 })
 
 if __name__ == "__main__":

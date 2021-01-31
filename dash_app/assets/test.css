@@ -3,6 +3,11 @@
     padding: 0;
     text-decoration: none;
 }
+.title{
+    font-size:30px;
+    font-weight: 900;
+    color: cadetblue;
+}
 #button{
     display: none;
 }

@@ -21,6 +21,7 @@ temp = '''
                     <nav class="Nav">
                         <a href="/">回首頁</a>
                         <a href="/reports/">連結其他</a>
+                        <a href="/another/">一般flask</a>
                     </nav>
                     {%app_entry%}
                     {%config%}
